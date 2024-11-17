@@ -13,14 +13,27 @@ use REPARACIONES_UNI;
 -- Tabla: TECNICO
 
 
--- Insertar técnicos en la tabla TECNICO
-INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, Direccion, Telefono, Email, Contrasena, Activo) VALUES
-('Carlos', 'Gomez', 'Ramirez', 'Av. Los Olivos 123', '987654321', 'carlos.gomez@email.com', 'contraseña123', 1),
-('Ana', 'Martinez', 'Lopez', 'Calle Primavera 456', '966533221', 'ana.martinez@email.com', 'contraseña456', 1),
-('Juan', 'Perez', 'Fernandez', 'Jr. Santa Rosa 789', '955112233', 'juan.perez@email.com', 'contraseña789', 1),
-('Laura', 'Hernandez', 'Sanchez', 'Av. Central 101', '944223344', 'laura.hernandez@email.com', 'contraseña101', 1),
-('Luis', 'Diaz', 'Gonzalez', 'Calle Larga 202', '933445566', 'luis.diaz@email.com', 'contraseña202', 1);
-GO
+-- Inserciones en la tabla TECNICO
+INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, TecnicoDni, Direccion, Telefono, Email, Contrasena, Activo)
+VALUES 
+('Carlos', 'Ramirez', 'Lopez', '12345678', 'Av. Los Olivos 123', '999888777', 'carlos.ramirez@example.com', 'contrasenaSegura123', 1);
+
+INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, TecnicoDni, Direccion, Telefono, Email, Contrasena, Activo)
+VALUES 
+('María', 'Fernandez', 'Gomez', '87654321', 'Jr. Las Flores 456', '988777666', 'maria.fernandez@example.com', 'claveFuerte456', 1);
+
+INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, TecnicoDni, Direccion, Telefono, Email, Contrasena, Activo)
+VALUES 
+('Luis', 'Sanchez', 'Perez', '11223344', 'Calle Los Pinos 789', '977666555', 'luis.sanchez@example.com', 'passSegura789', 1);
+
+INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, TecnicoDni, Direccion, Telefono, Email, Contrasena, Activo)
+VALUES 
+('Ana', 'Torres', 'Rojas', '55667788', 'Av. El Sol 321', '966555444', 'ana.torres@example.com', 'seguraClave1010', 1);
+
+INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, TecnicoDni, Direccion, Telefono, Email, Contrasena, Activo)
+VALUES 
+('Jorge', 'Castillo', 'Vega', '33445566', 'Jr. La Luna 654', '955444333', 'jorge.castillo@example.com', 'passwordSeguro2024', 1);
+
 
 -- Tabla: ESTADO
 
@@ -164,74 +177,74 @@ INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (15, '
 
 -- Servicios más generales
 INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES
-(14, 'Reparación de Computadora', 'Técnico', 50.00, 999999),
-(14, 'Instalación de Software', 'Técnico', 30.00, 999999),
-(14, 'Diagnóstico de Fallas', 'Técnico', 20.00, 999999),
-(14, 'Mantenimiento Preventivo', 'Técnico', 40.00, 999999),
-(14, 'Reemplazo de Batería', 'Técnico', 60.00, 999999),
-(14, 'Instalación de Hardware', 'Técnico', 70.00, 999999),
-(14, 'Limpieza Interna de PC', 'Técnico', 25.00, 999999),
-(14, 'Instalación de Red', 'Técnico', 100.00, 999999),
-(14, 'Configuración de Sistema', 'Técnico', 45.00, 999999),
-(14, 'Actualización de Software', 'Técnico', 35.00, 999999),
-(14, 'Reparación de Pantalla', 'Técnico', 80.00, 999999),
-(14, 'Cambio de Tarjeta Gráfica', 'Técnico', 90.00, 999999),
-(14, 'Restauración de Sistema', 'Técnico', 50.00, 999999),
-(14, 'Optimización de PC', 'Técnico', 40.00, 999999),
-(14, 'Recuperación de Datos', 'Técnico', 120.00, 999999),
-(14, 'Instalación de Antivirus', 'Técnico', 20.00, 999999);
+(16, 'Reparación de Computadora', 'Técnico', 50.00, 999999),
+(16, 'Instalación de Software', 'Técnico', 30.00, 999999),
+(16, 'Diagnóstico de Fallas', 'Técnico', 20.00, 999999),
+(16, 'Mantenimiento Preventivo', 'Técnico', 40.00, 999999),
+(16, 'Reemplazo de Batería', 'Técnico', 60.00, 999999),
+(16, 'Instalación de Hardware', 'Técnico', 70.00, 999999),
+(16, 'Limpieza Interna de PC', 'Técnico', 25.00, 999999),
+(16, 'Instalación de Red', 'Técnico', 100.00, 999999),
+(16, 'Configuración de Sistema', 'Técnico', 45.00, 999999),
+(16, 'Actualización de Software', 'Técnico', 35.00, 999999),
+(16, 'Reparación de Pantalla', 'Técnico', 80.00, 999999),
+(16, 'Cambio de Tarjeta Gráfica', 'Técnico', 90.00, 999999),
+(16, 'Restauración de Sistema', 'Técnico', 50.00, 999999),
+(16, 'Optimización de PC', 'Técnico', 40.00, 999999),
+(16, 'Recuperación de Datos', 'Técnico', 120.00, 999999),
+(16, 'Instalación de Antivirus', 'Técnico', 20.00, 999999);
 
 -- Servicios más complejos relacionados con los componentes
 INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES
-(14, 'Reemplazo de Procesador', 'Técnico', 100.00, 999999),
-(14, 'Actualización de BIOS para compatibilidad de procesador', 'Técnico', 80.00, 999999),
-(14, 'Reemplazo de Tarjeta Madre', 'Técnico', 150.00, 999999),
-(14, 'Reparación de Puerto USB en la tarjeta madre', 'Técnico', 50.00, 999999),
-(14, 'Instalación de Memoria RAM', 'Técnico', 40.00, 999999),
-(14, 'Prueba y diagnóstico de Memoria RAM', 'Técnico', 30.00, 999999),
-(14, 'Reemplazo de Disco Duro / SSD', 'Técnico', 120.00, 999999),
-(14, 'Clonación de Disco Duro a SSD', 'Técnico', 100.00, 999999),
-(14, 'Reemplazo de Fuente de Poder', 'Técnico', 80.00, 999999),
-(14, 'Reparación de Fuente de Poder', 'Técnico', 60.00, 999999),
-(14, 'Instalación de Tarjeta Gráfica', 'Técnico', 70.00, 999999),
-(14, 'Reemplazo de Tarjeta Gráfica', 'Técnico', 90.00, 999999),
-(14, 'Limpieza de Ventiladores', 'Técnico', 25.00, 999999),
-(14, 'Instalación de Ventiladores adicionales', 'Técnico', 40.00, 999999),
-(14, 'Reparación de Pantalla', 'Técnico', 80.00, 999999),
-(14, 'Reemplazo de Pantalla', 'Técnico', 120.00, 999999),
-(14, 'Reparación de Teclado', 'Técnico', 30.00, 999999),
-(14, 'Reemplazo de Teclado', 'Técnico', 50.00, 999999),
-(14, 'Reparación de Mouse', 'Técnico', 25.00, 999999),
-(14, 'Reemplazo de Mouse', 'Técnico', 35.00, 999999),
-(14, 'Reemplazo de Batería', 'Técnico', 60.00, 999999),
-(14, 'Calibración de Batería', 'Técnico', 30.00, 999999),
-(14, 'Reparación de Cables', 'Técnico', 15.00, 999999),
-(14, 'Reemplazo de Conectores', 'Técnico', 20.00, 999999),
-(14, 'Reparación de Unidad Óptica', 'Técnico', 50.00, 999999),
-(14, 'Reemplazo de Unidad Óptica', 'Técnico', 70.00, 999999),
-(14, 'Reparación de Chasis', 'Técnico', 40.00, 999999),
-(14, 'Cambio de Carcasa', 'Técnico', 60.00, 999999),
-(14, 'Reemplazo de Adaptador de Corriente', 'Técnico', 30.00, 999999),
-(14, 'Reparación de Adaptador de Corriente', 'Técnico', 40.00, 999999);
+(16, 'Reemplazo de Procesador', 'Técnico', 100.00, 999999),
+(16, 'Actualización de BIOS para compatibilidad de procesador', 'Técnico', 80.00, 999999),
+(16, 'Reemplazo de Tarjeta Madre', 'Técnico', 150.00, 999999),
+(16, 'Reparación de Puerto USB en la tarjeta madre', 'Técnico', 50.00, 999999),
+(16, 'Instalación de Memoria RAM', 'Técnico', 40.00, 999999),
+(16, 'Prueba y diagnóstico de Memoria RAM', 'Técnico', 30.00, 999999),
+(16, 'Reemplazo de Disco Duro / SSD', 'Técnico', 120.00, 999999),
+(16, 'Clonación de Disco Duro a SSD', 'Técnico', 100.00, 999999),
+(16, 'Reemplazo de Fuente de Poder', 'Técnico', 80.00, 999999),
+(16, 'Reparación de Fuente de Poder', 'Técnico', 60.00, 999999),
+(16, 'Instalación de Tarjeta Gráfica', 'Técnico', 70.00, 999999),
+(16, 'Reemplazo de Tarjeta Gráfica', 'Técnico', 90.00, 999999),
+(16, 'Limpieza de Ventiladores', 'Técnico', 25.00, 999999),
+(16, 'Instalación de Ventiladores adicionales', 'Técnico', 40.00, 999999),
+(16, 'Reparación de Pantalla', 'Técnico', 80.00, 999999),
+(16, 'Reemplazo de Pantalla', 'Técnico', 120.00, 999999),
+(16, 'Reparación de Teclado', 'Técnico', 30.00, 999999),
+(16, 'Reemplazo de Teclado', 'Técnico', 50.00, 999999),
+(16, 'Reparación de Mouse', 'Técnico', 25.00, 999999),
+(16, 'Reemplazo de Mouse', 'Técnico', 35.00, 999999),
+(16, 'Reemplazo de Batería', 'Técnico', 60.00, 999999),
+(16, 'Calibración de Batería', 'Técnico', 30.00, 999999),
+(16, 'Reparación de Cables', 'Técnico', 15.00, 999999),
+(16, 'Reemplazo de Conectores', 'Técnico', 20.00, 999999),
+(16, 'Reparación de Unidad Óptica', 'Técnico', 50.00, 999999),
+(16, 'Reemplazo de Unidad Óptica', 'Técnico', 70.00, 999999),
+(16, 'Reparación de Chasis', 'Técnico', 40.00, 999999),
+(16, 'Cambio de Carcasa', 'Técnico', 60.00, 999999),
+(16, 'Reemplazo de Adaptador de Corriente', 'Técnico', 30.00, 999999),
+(16, 'Reparación de Adaptador de Corriente', 'Técnico', 40.00, 999999);
 
 -- Servicios más simples y comunes
 INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES
-(14, 'Limpieza de Computadora', 'Técnico', 25.00, 999999),
-(14, 'Diagnóstico General de PC', 'Técnico', 30.00, 999999),
-(14, 'Instalación de Antivirus', 'Técnico', 20.00, 999999),
-(14, 'Actualización de Sistema Operativo', 'Técnico', 40.00, 999999),
-(14, 'Instalación de Software', 'Técnico', 25.00, 999999),
-(14, 'Backup y Recuperación de Archivos', 'Técnico', 50.00, 999999),
-(14, 'Optimización de Sistema', 'Técnico', 35.00, 999999),
-(14, 'Configuración de Red Local', 'Técnico', 45.00, 999999),
-(14, 'Instalación de Router', 'Técnico', 30.00, 999999),
-(14, 'Configuración de Wi-Fi', 'Técnico', 25.00, 999999),
-(14, 'Instalación de Cortafuegos', 'Técnico', 40.00, 999999),
-(14, 'Reparación de Laptop', 'Técnico', 50.00, 999999),
-(14, 'Reparación de PC de Sobremesa', 'Técnico', 50.00, 999999),
-(14, 'Configuración de Impresora', 'Técnico', 25.00, 999999),
-(14, 'Configuración de Correo Electrónico', 'Técnico', 30.00, 999999),
-(14, 'Instalación de Drivers', 'Técnico', 20.00, 999999);
+(16, 'Limpieza de Computadora', 'Técnico', 25.00, 999999),
+(16, 'Diagnóstico General de PC', 'Técnico', 30.00, 999999),
+(16, 'Instalación de Antivirus', 'Técnico', 20.00, 999999),
+(16, 'Actualización de Sistema Operativo', 'Técnico', 40.00, 999999),
+(16, 'Instalación de Software', 'Técnico', 25.00, 999999),
+(16, 'Backup y Recuperación de Archivos', 'Técnico', 50.00, 999999),
+(16, 'Optimización de Sistema', 'Técnico', 35.00, 999999),
+(16, 'Configuración de Red Local', 'Técnico', 45.00, 999999),
+(16, 'Instalación de Router', 'Técnico', 30.00, 999999),
+(16, 'Configuración de Wi-Fi', 'Técnico', 25.00, 999999),
+(16, 'Instalación de Cortafuegos', 'Técnico', 40.00, 999999),
+(16, 'Reparación de Laptop', 'Técnico', 50.00, 999999),
+(16, 'Reparación de PC de Sobremesa', 'Técnico', 50.00, 999999),
+(16, 'Configuración de Impresora', 'Técnico', 25.00, 999999),
+(16, 'Configuración de Correo Electrónico', 'Técnico', 30.00, 999999),
+(16, 'Instalación de Drivers', 'Técnico', 20.00, 999999);
 
 
 
@@ -241,3 +254,11 @@ SELECT * FROM TECNICO
 SELECT * FROM TIPOITEM
 SELECT * FROM ITEM
 SELECT * FROM ESTADO
+
+select * from COMPUTADORA
+select * from CLIENTE
+
+DELETE FROM CLIENTE
+WHERE  ClienteDni = '12342679'
+GO
+select COUNT(1) contador from CLIENTE

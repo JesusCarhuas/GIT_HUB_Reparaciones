@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Jesús\",\r\n  \"apellidoPaterno\": \"Carhuas\",\r\n  \"apellidoMaterno\": \"Apellidos\",\r\n  \"dni\": \"12345679\",\r\n  \"direccion\": \"Calle Falsa 123\",\r\n  \"telefono\": \"987654321\",\r\n  \"email\": \"email@example.com\"\r\n}",
+					"raw": "{\r\n  \"nombre\": \"luis\",\r\n  \"apellidoPaterno\": \"Lujan\",\r\n  \"apellidoMaterno\": \"Apellisdos\",\r\n  \"dni\": \"13341979\",\r\n  \"direccion\": \"Calle Falsa 123\",\r\n  \"telefono\": \"987654321\",\r\n  \"email\": \"email@example.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,6 +59,35 @@
 					"path": [
 						"computadora",
 						"crearComputadora"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tecnico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellidoPaterno\": \"Perez\",\r\n  \"apellidoMaterno\": \"Gomez\",\r\n  \"dni\": \"12341678\",\r\n  \"direccion\": \"Av. Principal 123, Ciudad\",\r\n  \"telefono\": \"51123456789\",\r\n  \"email\": \"juan.perez@example.com\",\r\n  \"contrasena\": \"Contrasena.11\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/tecnico/crearTecnico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tecnico",
+						"crearTecnico"
 					]
 				}
 			},
