@@ -8,40 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.uni.app.dto.PagoDto;
 import pe.edu.uni.app.service.PagoService;
 
+
+
 @RestController
 @RequestMapping("/pago")
 public class PagoRest {
 
-	@Autowired
+    @Autowired
     private PagoService pagoService;
 
-    // Endpoint para registrar un adelanto
     @PostMapping("/adelanto")
     public ResponseEntity<?> registrarAdelanto(@RequestBody PagoDto pago) {
         try {
             PagoDto resultado = pagoService.registrarAdelanto(pago);
-            return ResponseEntity.ok(resultado);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Error: " + e.getMessage());
+            return new ResponseEntity<>(resultado, HttpStatus.CREATED);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error interno: " + e.getMessage());
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-    // Endpoint para registrar el pago final
+    
+    // Endpoint para registrar el pago final (simulado)
     @PostMapping("/pago-final")
     public ResponseEntity<?> registrarPagoFinal(@RequestBody PagoDto pago) {
         try {
             PagoDto resultado = pagoService.registrarPagoFinal(pago);
-            return ResponseEntity.ok(resultado);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Error: " + e.getMessage());
+            return new ResponseEntity<>(resultado, HttpStatus.CREATED);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error interno: " + e.getMessage());
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

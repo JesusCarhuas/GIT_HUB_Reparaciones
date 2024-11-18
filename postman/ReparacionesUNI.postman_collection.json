@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Juan\",\r\n  \"apellidoPaterno\": \"Perez\",\r\n  \"apellidoMaterno\": \"Gomez\",\r\n  \"dni\": \"12341678\",\r\n  \"direccion\": \"Av. Principal 123, Ciudad\",\r\n  \"telefono\": \"51123456789\",\r\n  \"email\": \"juan.perez@example.com\",\r\n  \"contrasena\": \"Contrasena.11\"\r\n}\r\n",
+					"raw": "{\r\n  \"nombre\": \"Juan Silvio\",\r\n  \"apellidoPaterno\": \"Perez\",\r\n  \"apellidoMaterno\": \"Gomez\",\r\n  \"dni\": \"12341278\",\r\n  \"direccion\": \"Av. Principal 123, Ciudad\",\r\n  \"telefono\": \"51123456789\",\r\n  \"email\": \"juan.perez@example.com\",\r\n  \"contrasena\": \"Contrasena.11\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,6 +88,128 @@
 					"path": [
 						"tecnico",
 						"crearTecnico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UsoItem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idItem\": 1,\r\n    \"serieRegistro\": \"R00001\",\r\n    \"cantidad\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/items/ingreso-uso-items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"items",
+						"ingreso-uso-items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoItem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/items/visualizar-tipoItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"items",
+						"visualizar-tipoItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/items/vizualizar-items?idTipoItem=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"items",
+						"vizualizar-items"
+					],
+					"query": [
+						{
+							"key": "idTipoItem",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idComputadora\":1,\r\n    \"idTecnico\":2,\r\n    \"adelanto\":100,\r\n    \"duracionEstimada\":11,\r\n    \"problemaReportado\":\"HOLA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/registro/crearRegistro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"registro",
+						"crearRegistro"
 					]
 				}
 			},

@@ -18,24 +18,31 @@ public class PagoService {
     public PagoDto registrarAdelanto(PagoDto pago) {
         // Validar datos del pago
         validarDatosPago(pago);
-
-        // Insertar el adelanto en la tabla PAGO
+        validarAdelanto(pago);
+        // Insertar el adelanto en la tabla PAGO_TEST
         String sqlInsert = "INSERT INTO PAGO (SERIERegistro, MontoPago) VALUES (?, ?)";
         jdbcTemplate.update(sqlInsert, pago.getSerieRegistro(), pago.getMontoPago());
-
-        // Actualizar el campo Adelanto en la tabla REGISTRO
-        String sqlUpdate = "UPDATE REGISTRO SET Adelanto = Adelanto + ? WHERE SERIERegistro = ?";
-        jdbcTemplate.update(sqlUpdate, pago.getMontoPago(), pago.getSerieRegistro());
 
         return pago;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    private void validarAdelanto(PagoDto pago) {
+    	 // Consultar el valor de Adelanto en la tabla REGISTRO para el SERIERegistro proporcionado
+        String sql = "SELECT Adelanto FROM REGISTRO WHERE SERIERegistro = ?";
+        Double adelanto = jdbcTemplate.queryForObject(sql, Double.class, pago.getSerieRegistro());
+        
+        if (!adelanto.equals(pago.getMontoPago())) {
+            throw new RuntimeException("El monto p	roporcionado no coincide con el valor de Adelanto en el registro. El monto es:" + adelanto);
+        }
+        
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public PagoDto registrarPagoFinal(PagoDto pago) {
         // Validar datos del pago
         validarDatosPago(pago);
-
-        // Insertar el pago final en la tabla PAGO
+        validarPagoFinal(pago);
+        // Insertar el pago final en la tabla PAGO_TEST
         String sqlInsert = "INSERT INTO PAGO (SERIERegistro, MontoPago) VALUES (?, ?)";
         jdbcTemplate.update(sqlInsert, pago.getSerieRegistro(), pago.getMontoPago());
 
@@ -46,7 +53,17 @@ public class PagoService {
         return pago;
     }
 
-    // Validar datos del pago
+    private void validarPagoFinal(PagoDto pago) {
+    	// Consultar el valor de Adelanto en la tabla REGISTRO para el SERIERegistro proporcionado
+        String sql = "select TOTAL - Adelanto AS Saldo from REGISTRO where SERIERegistro = ? ";
+        Double saldo = jdbcTemplate.queryForObject(sql, Double.class, pago.getSerieRegistro());
+        
+        if (!saldo.equals(pago.getMontoPago())) {
+            throw new RuntimeException("Su deuda restante es" + saldo);
+        }
+	}
+
+	// Validar datos del pago
     private void validarDatosPago(PagoDto pago) {
         validarSerieRegistro(pago.getSerieRegistro());
         validarMontoPago(pago.getMontoPago());
@@ -61,6 +78,11 @@ public class PagoService {
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, serieRegistro);
         if (count == null || count == 0) {
             throw new RuntimeException("La serie de registro no existe.");
+        }
+        String sqlIngresos = "SELECT COUNT(1) FROM USOITEMS WHERE SERIERegistro = ?";
+        Integer countIngresos = jdbcTemplate.queryForObject(sqlIngresos, Integer.class, serieRegistro);
+        if (countIngresos != null && countIngresos >= 2) {
+            throw new RuntimeException("La serie de registro ya tiene el límite máximo de dos ingresos.");
         }
     }
 

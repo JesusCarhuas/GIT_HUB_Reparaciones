@@ -1,5 +1,6 @@
 package pe.edu.uni.app.service;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -25,29 +26,56 @@ public class RegistroService {
 		bean.setSERIERegistro(construirSerieRegistro("ru",bean.getMarca()));
 		//estado comienza en proceso
 		bean.setIdEstado(1);
-		//usar adelanto para crear el primer total
-		addAdelantoToTotal(bean);
+		//valores iniciales
+		bean.setImporte(0);
+		bean.setImpuesto(0);
+		bean.setTotal(0);
 		//problema no especificado
 		problemaNoEspecificado(bean);
-		// Crear registro
+		// crear registro
 		String sql = "INSERT INTO dbo.REGISTRO( "
-		        + "SERIERegistro, IDCliente, IDComputadora, "
-		        + "IDTecnico, IDEstado, Adelanto, "
-		        + "Importe, FechaDeRegistro, FechaEstimadaDeEntrega, ProblemaReportado "
-		        + ") VALUES ( "
-		        + "?, ?, ?, "
-		        + "?, ?, ?, "
-		        + "?, GETDATE(), DATEADD(day, ?, GETDATE()), ?)";
-
-		jdbcTemplate.update(sql,
-		        bean.getSERIERegistro(), bean.getIdCliente(), bean.getIdComputadora(),
-		        bean.getIdTecnico(), bean.getIdEstado(), bean.getAdelanto(),
-		        bean.getImporte(), bean.getDuracionEstimada(), bean.getProblemaReportado());
+				+ "SERIERegistro,IDCliente,IDComputadora, "
+				+ "IDTecnico,IDEstado,Adelanto, "
+				+ "Importe,Impuesto,TOTAL, "
+				+ "FechaDeRegistro,FechaEstimadaDeEntrega,ProblemaReportado "
+				+ ") VALUES ( "
+				+ "?,?,?,?, "
+				+ "?,?,?,?,?, "
+				+ "GETDATE(),DATEADD(day, ?, GETDATE()), ?)";
+		jdbcTemplate.update(sql, bean.getSERIERegistro(), bean.getIdCliente(), bean.getIdComputadora(), 
+				bean.getIdTecnico(), bean.getIdEstado(), bean.getAdelanto(), 
+				bean.getImporte(), bean.getImpuesto(), bean.getTotal(), 
+				bean.getDuracionEstimada(), bean.getProblemaReportado());
 		
 		//actualizar el stock en la tabla stock
 				actualizarTecnico(bean.getIdTecnico());
 				
 		return bean;
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
+	public void actualizarTotal(String serie, double add, String ph) {
+		RegistroDto bean = new RegistroDto();
+		//existe registro
+		if(!existeRegistro(serie)) {
+			throw new RuntimeException("El registro con la serie especificada no existe.");
+		}
+		bean.setSERIERegistro(serie);
+		//el aumento debe ser positivo
+		if(add<=0) {
+			throw new RuntimeException("El "+ph+" debe ser positivo");
+		}
+		String sql = "SELECT Importe, Impuesto, TOTAL FROM REGISTRO WHERE SERIERegistro = ?";
+		List<Map<String,Object>> result = jdbcTemplate.queryForList(sql, serie);
+		if(result.isEmpty()) {
+			throw new RuntimeException("No se obtuvieron resultados.");
+		}
+		Map<String,Object> row = result.get(0);
+		bean.setImporte((double) row.get("Importe"));
+		bean.setImpuesto((double) row.get("Impuesto"));
+		bean.setTotal((double) row.get("Total"));
+		addTotal(bean, add);
+		sql = "UPDATE REGISTRO SET Importe = ?, Impuesto = ?, TOTAL = ? WHERE SERIERegistro = ?";
+		jdbcTemplate.update(sql, bean.getImporte(), bean.getImpuesto(), bean.getTotal(), bean.getSERIERegistro());
 	}
 	private void actualizarTecnico(int idTecnico) {
 		String sqlUpdate = "UPDATE TECNICO SET Activo = 1 WHERE IDTecnico = ?";
@@ -61,7 +89,7 @@ public class RegistroService {
 		//validar técnico
 		validarTecnico(bean.getIdTecnico());
 		// validar adelanto
-		validarAdelanto(bean.getAdelanto(),15);
+		validarAdelanto(bean.getAdelanto(),100);
 		//validar duración estimada
 		validarDuracionEstimada(bean.getDuracionEstimada(),15);
 	}
@@ -81,7 +109,7 @@ public class RegistroService {
 			throw new RuntimeException("La duración estimada es obligatoria.");
 		}
 		if(durac <= 0 || durac > maxValue) {
-			throw new RuntimeException("La duración estimada debe ser positiva y menor que "+maxValue+" dias. Tiempo: "+duracion);
+			throw new RuntimeException("La duración estimada debe ser positiva y menor que "+maxValue+" segundos. Tiempo: "+duracion);
 		}
 	}
 	private void validarCliente(int id) {
@@ -95,7 +123,12 @@ public class RegistroService {
 		if(Integer.valueOf(bean.getIdComputadora()) == null) {
 			throw new RuntimeException("El ID de computadora es obligatorio.");
 		}
-	    String sql = "SELECT COMPUTADORA.IDComputadora, COMPUTADORA.Marca, COMPUTADORA.IDCliente "
+		String sql = "SELECT COUNT(1) FROM REGISTRO WHERE IDComputadora = ?";
+		Integer count = jdbcTemplate.queryForObject(sql, Integer.class, bean.getIdComputadora());
+		if(!(count == null || count == 0)) {
+			throw new RuntimeException("La computadora con el ID proporcionado ya se encuentra en reparación.");
+		}
+	    sql = "SELECT COMPUTADORA.IDComputadora, COMPUTADORA.Marca, COMPUTADORA.IDCliente "
 	    		+ "FROM COMPUTADORA "
 	    		+ "INNER JOIN CLIENTE ON COMPUTADORA.IDCliente = CLIENTE.IDCliente "
 	    		+ "WHERE IDComputadora = ?";
@@ -142,12 +175,11 @@ public class RegistroService {
 		serie += ("00000"+count).substring(count.length());
 		return serie;
 	}
-	private void addAdelantoToTotal(RegistroDto bean) {
-		double add = bean.getAdelanto();
-		double importe = add/1.18;
-		double impuesto = importe * 0.18;
-		bean.setTotal(bean.getTotal()+add);
-		bean.setImporte(bean.getImporte()+importe);
+	private void addTotal(RegistroDto bean, double add) {
+		double impuesto = add * 0.18;
+		double total = add + impuesto;
+		bean.setTotal(bean.getTotal()+total);
+		bean.setImporte(bean.getImporte()+add);
 		bean.setImpuesto(bean.getImpuesto()+impuesto);
 	}
 	public boolean existeRegistro(String serie) {
@@ -173,4 +205,6 @@ public class RegistroService {
 		jdbcTemplate.update(sql, estado, serie);
 	}
 }
+
+
 

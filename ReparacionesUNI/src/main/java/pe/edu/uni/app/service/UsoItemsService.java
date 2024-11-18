@@ -15,30 +15,38 @@ import pe.edu.uni.app.dto.UsoItemsDto;
 public class UsoItemsService {
 	@Autowired
     private JdbcTemplate jdbcTemplate;
+
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public UsoItemsDto registrarUsoItems(UsoItemsDto bean) {
 		// Validar datos del uso de items
-		validarExistenciaItem(bean.getIdItem());
-        validarSerieRegistro(bean.getSerieRegistro());
-        double costoUnitario = obtenerCostoUnitario(bean.getIdItem());
-        bean.setCostoUnitario(costoUnitario);
-        validarCantidadDisponible(bean.getIdItem(), bean.getCantidad());
+		validarDatos(bean);
+
+        double subtotal = bean.getCostoUnitario() * bean.getCantidad();
+        if (subtotal <= 0) {
+            throw new RuntimeException("El subtotal calculado no es válido: " + subtotal);
+        }
 		//Insercion de datos en la tabla
-        String sqlInsert = "INSERT INTO USOITEMS (idItem, serieRegistro, costoUnitario, cantidad) " +
-                "VALUES (?, ?, ?, ?)";
+        String sqlInsert = "INSERT INTO USOITEMS (idItem, serieRegistro, costoUnitario, cantidad) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sqlInsert, bean.getIdItem(), bean.getSerieRegistro(), bean.getCostoUnitario(), bean.getCantidad());
-        
-		
 		//actualizar el stock en la tabla stock
 		actualizarStock(bean.getIdItem(), bean.getCantidad());
-
 		
 		return bean;
 	}
 	
-
-
+	 private void validarDatos(UsoItemsDto bean) {
+	        if (bean.getCantidad() <= 0) {
+	            throw new RuntimeException("La cantidad debe ser mayor a cero.");
+	        }
+	        validarExistenciaItem(bean.getIdItem());
+	        validarSerieRegistro(bean.getSerieRegistro());
+	        bean.setCostoUnitario(obtenerCostoUnitario(bean.getIdItem()));
+	        validarCantidadDisponible(bean.getIdItem(), bean.getCantidad());
+	    }
+	
+	
+	
 	@Transactional(readOnly = true)
     public List<Map<String, Object>> obtenerTodosLosTiposDeItems() {
         String sql = "SELECT * FROM TIPOITEM";
@@ -96,3 +104,4 @@ public class UsoItemsService {
 	        jdbcTemplate.update(sqlUpdate, cantidad, idItem);
 	    }
 }
+

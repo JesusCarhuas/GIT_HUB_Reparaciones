@@ -12,5 +12,5 @@ public class UsoItemsDto {
 	private String serieRegistro;
 	private double costoUnitario;
 	private int cantidad;
-	private double monto;
+
 }
