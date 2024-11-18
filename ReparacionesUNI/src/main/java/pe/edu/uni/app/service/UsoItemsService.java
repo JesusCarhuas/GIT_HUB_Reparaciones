@@ -1,5 +1,8 @@
 package pe.edu.uni.app.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -33,7 +36,20 @@ public class UsoItemsService {
 		
 		return bean;
 	}
-	 private void validarExistenciaItem(int idItem) {
+	
+	@Transactional(readOnly = true)
+    public List<Map<String, Object>> obtenerTodosLosTiposDeItems() {
+        String sql = "SELECT * FROM TIPOITEM";
+        return jdbcTemplate.queryForList(sql);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> obtenerItemsPorTipo(int idTipoItem) {
+        String sql = "SELECT * FROM Item WHERE idTipo = ?";
+        return jdbcTemplate.queryForList(sql, idTipoItem);
+    }
+	
+	private void validarExistenciaItem(int idItem) {
 	        String sql = "SELECT COUNT(1) FROM ITEM WHERE idItem = ?";
 	        int count = jdbcTemplate.queryForObject(sql, Integer.class, idItem);
 	        if (count == 0) {

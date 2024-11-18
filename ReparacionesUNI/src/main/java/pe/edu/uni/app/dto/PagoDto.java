@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PagoDto {
-    private String serieRegistro; // Relación con REGISTRO
-    private double montoPago;     // Monto pagado
+    private String serieRegistro; 
+    private double montoPago;     
 }

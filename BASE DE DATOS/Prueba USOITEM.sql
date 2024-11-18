@@ -44,7 +44,7 @@ INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (2, 'R
 --Prueba Registro
 INSERT INTO dbo.REGISTRO (
     SERIERegistro, IDCliente, IDComputadora, IDTecnico, IDEstado,
-    Adelanto, Importe, Impuesto, TOTAL, FechaDeRegistro,
+    Adelanto, Importe, FechaDeRegistro,
     FechaEstimadaDeEntrega, ProblemaReportado
 )
 VALUES (
@@ -55,8 +55,6 @@ VALUES (
     1,           -- IDEstado
     100.00,      -- Adelanto
     700,      -- Importe
-    126,       -- Impuesto (18% del Importe)
-    826,      -- TOTAL (Importe + Impuesto)
     GETDATE(), -- FechaDeRegistro
     '2024-11-20', -- FechaEstimadaDeEntrega
     'Problema de arranque del sistema operativo' -- ProblemaReportado
@@ -84,6 +82,8 @@ select * from tecnico
 select * from estado
 
 select * from PAGO
+
+UPDATE TECNICO SET Activo = 1 WHERE IDTecnico = ?
 
 select * from tipoitem
 select * from ITEM
