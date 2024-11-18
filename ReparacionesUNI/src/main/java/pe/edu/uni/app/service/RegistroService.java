@@ -29,20 +29,20 @@ public class RegistroService {
 		addAdelantoToTotal(bean);
 		//problema no especificado
 		problemaNoEspecificado(bean);
-		// crear registro
+		// Crear registro
 		String sql = "INSERT INTO dbo.REGISTRO( "
-				+ "SERIERegistro,IDCliente,IDComputadora, "
-				+ "IDTecnico,IDEstado,Adelanto, "
-				+ "Importe,Impuesto,TOTAL, "
-				+ "FechaDeRegistro,FechaEstimadaDeEntrega,ProblemaReportado "
-				+ ") VALUES ( "
-				+ "?,?,?,?, "
-				+ "?,?,?,?,?, "
-				+ "GETDATE(),DATEADD(day, ?, GETDATE()), ?)";
-		jdbcTemplate.update(sql, bean.getSERIERegistro(), bean.getIdCliente(), bean.getIdComputadora(), 
-				bean.getIdTecnico(), bean.getIdEstado(), bean.getAdelanto(), 
-				bean.getImporte(), bean.getImpuesto(), bean.getTotal(), 
-				bean.getDuracionEstimada(), bean.getProblemaReportado());
+		        + "SERIERegistro, IDCliente, IDComputadora, "
+		        + "IDTecnico, IDEstado, Adelanto, "
+		        + "Importe, FechaDeRegistro, FechaEstimadaDeEntrega, ProblemaReportado "
+		        + ") VALUES ( "
+		        + "?, ?, ?, "
+		        + "?, ?, ?, "
+		        + "?, GETDATE(), DATEADD(day, ?, GETDATE()), ?)";
+
+		jdbcTemplate.update(sql,
+		        bean.getSERIERegistro(), bean.getIdCliente(), bean.getIdComputadora(),
+		        bean.getIdTecnico(), bean.getIdEstado(), bean.getAdelanto(),
+		        bean.getImporte(), bean.getDuracionEstimada(), bean.getProblemaReportado());
 		
 		//actualizar el stock en la tabla stock
 				actualizarTecnico(bean.getIdTecnico());
@@ -61,7 +61,7 @@ public class RegistroService {
 		//validar técnico
 		validarTecnico(bean.getIdTecnico());
 		// validar adelanto
-		validarAdelanto(bean.getAdelanto(),100);
+		validarAdelanto(bean.getAdelanto(),15);
 		//validar duración estimada
 		validarDuracionEstimada(bean.getDuracionEstimada(),15);
 	}
@@ -81,7 +81,7 @@ public class RegistroService {
 			throw new RuntimeException("La duración estimada es obligatoria.");
 		}
 		if(durac <= 0 || durac > maxValue) {
-			throw new RuntimeException("La duración estimada debe ser positiva y menor que "+maxValue+" segundos. Tiempo: "+duracion);
+			throw new RuntimeException("La duración estimada debe ser positiva y menor que "+maxValue+" dias. Tiempo: "+duracion);
 		}
 	}
 	private void validarCliente(int id) {

@@ -28,15 +28,17 @@ public class UsoItemsService {
         String sqlInsert = "INSERT INTO USOITEMS (idItem, serieRegistro, costoUnitario, cantidad) " +
                 "VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sqlInsert, bean.getIdItem(), bean.getSerieRegistro(), bean.getCostoUnitario(), bean.getCantidad());
-
+        
 		
 		//actualizar el stock en la tabla stock
 		actualizarStock(bean.getIdItem(), bean.getCantidad());
-		
+
 		
 		return bean;
 	}
 	
+
+
 	@Transactional(readOnly = true)
     public List<Map<String, Object>> obtenerTodosLosTiposDeItems() {
         String sql = "SELECT * FROM TIPOITEM";
