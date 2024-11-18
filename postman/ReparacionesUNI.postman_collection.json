@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Juan Silvio\",\r\n  \"apellidoPaterno\": \"Perez\",\r\n  \"apellidoMaterno\": \"Gomez\",\r\n  \"dni\": \"12341278\",\r\n  \"direccion\": \"Av. Principal 123, Ciudad\",\r\n  \"telefono\": \"51123456789\",\r\n  \"email\": \"juan.perez@example.com\",\r\n  \"contrasena\": \"Contrasena.11\"\r\n}\r\n",
+					"raw": "{\r\n  \"nombre\": \"Juan Silvio\",\r\n  \"apellidoPaterno\": \"Perez\",\r\n  \"apellidoMaterno\": \"Gomez\",\r\n  \"dni\": \"12341298\",\r\n  \"direccion\": \"Av. Principal 123, Ciudad\",\r\n  \"telefono\": \"51123456789\",\r\n  \"email\": \"juan.perez@example.com\",\r\n  \"contrasena\": \"Contrasena.11\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -100,7 +100,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idItem\": 1,\r\n    \"serieRegistro\": \"R00001\",\r\n    \"cantidad\": 3\r\n}",
+					"raw": "{\r\n    \"idItem\": 1,\r\n    \"serieRegistro\": \"RUDEL00001\",\r\n    \"cantidad\": 3\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
