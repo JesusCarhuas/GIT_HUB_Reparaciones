@@ -1,6 +1,7 @@
 package pe.edu.uni.app.service;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,9 @@ public class RegistroService {
 				
 		return bean;
 	}
+	
+
+	
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	public void actualizarTotal(String serie, double add, String ph) {
 		RegistroDto bean = new RegistroDto();
@@ -65,14 +69,20 @@ public class RegistroService {
 			throw new RuntimeException("El "+ph+" debe ser positivo");
 		}
 		String sql = "SELECT Importe, Impuesto, TOTAL FROM REGISTRO WHERE SERIERegistro = ?";
-		List<Map<String,Object>> result = jdbcTemplate.queryForList(sql, serie);
+		List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, serie);
 		if(result.isEmpty()) {
 			throw new RuntimeException("No se obtuvieron resultados.");
 		}
 		Map<String,Object> row = result.get(0);
-		bean.setImporte((double) row.get("Importe"));
-		bean.setImpuesto((double) row.get("Impuesto"));
-		bean.setTotal((double) row.get("Total"));
+		BigDecimal importe = (BigDecimal) row.get("Importe");
+		//System.out.println(importe.doubleValue());
+		bean.setImporte(importe.doubleValue());
+		BigDecimal impuesto = (BigDecimal) row.get("Impuesto");
+		//System.out.println(impuesto.doubleValue());
+		bean.setImporte(impuesto.doubleValue());
+		BigDecimal total = (BigDecimal) row.get("TOTAL");
+		//System.out.println(total.doubleValue());
+		bean.setImporte(total.doubleValue());
 		addTotal(bean, add);
 		sql = "UPDATE REGISTRO SET Importe = ?, Impuesto = ?, TOTAL = ? WHERE SERIERegistro = ?";
 		jdbcTemplate.update(sql, bean.getImporte(), bean.getImpuesto(), bean.getTotal(), bean.getSERIERegistro());
@@ -176,11 +186,12 @@ public class RegistroService {
 		return serie;
 	}
 	private void addTotal(RegistroDto bean, double add) {
-		double impuesto = add * 0.18;
-		double total = add + impuesto;
-		bean.setTotal(bean.getTotal()+total);
-		bean.setImporte(bean.getImporte()+add);
-		bean.setImpuesto(bean.getImpuesto()+impuesto);
+		double importe = bean.getImporte() + add;
+		double impuesto = bean.getImpuesto() + add * 0.18;
+		double total = importe + impuesto;
+		bean.setImporte(importe);
+		bean.setImpuesto(impuesto);
+		bean.setTotal(total);
 	}
 	public boolean existeRegistro(String serie) {
 		String sql = "SELECT COUNT(1) FROM REGISTRO WHERE SERIERegistro = ?";
@@ -205,6 +216,14 @@ public class RegistroService {
 		jdbcTemplate.update(sql, estado, serie);
 	}
 }
+
+
+
+
+
+
+
+
 
 
 

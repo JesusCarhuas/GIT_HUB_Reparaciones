@@ -1,8 +1,8 @@
 --CLIENTE
 INSERT INTO dbo.CLIENTE (Nombre, ApellidoPaternoC, ApellidoMaternoC, ClienteDni, Direccion, Telefono, Email)
 VALUES
-('JOSE', 'QUISPE', 'Ramírez', '12345678', 'Av. Los Álamos 123', '987654321', 'JOSE.111@gmail.com'),
-('Jesús', 'CARBAJAL', 'Ramírez', '12345678', 'Av. Los Álamos 123', '987654321', 'jesus.carhuas@gmail.com');
+('Jesús', 'Carhuas', 'Ramírez', '12345678', 'Av. Los Álamos 123', '987654321', 'jesus.carhuas@mail.com'),
+('Jesús', 'Carhuas', 'Ramírez', '12345678', 'Av. Los Álamos 123', '987654321', 'jesus.carhuas@mail.com');
 GO
 
 --COMPUTADORA
@@ -18,7 +18,7 @@ GO
 INSERT INTO dbo.TECNICO (Nombre, ApellidoPaternoT, ApellidoMaternoT, TecnicoDni, Direccion, Telefono, Email, Contrasena, Activo)
 VALUES 
 ('Carlos', 'Ramirez', 'Lopez', '12345678', 'Av. Los Olivos 123', '999888777', 'carlos.ramirez@example.com', 'contrasenaSegura123', 0),
-('juan', 'Ramirez', 'Lopez', '12555678', 'Av. Los Olivos 123', '999888777', 'carlos.ramirez@example.com', 'contrasenaSegura123', 0);
+('Carlos', 'Ramirez', 'Lopez', '12355678', 'Av. Los Olivos 123', '999888777', 'carlos.ramirez@example.com', 'contrasenaSegura123', 0);
 --ESTADOS
 -- Tabla: ESTADO
 
@@ -26,6 +26,22 @@ INSERT INTO dbo.ESTADO (Descripcion) VALUES ('EN PROCESO');
 INSERT INTO dbo.ESTADO (Descripcion) VALUES ('REPARADO');
 INSERT INTO dbo.ESTADO (Descripcion) VALUES ('LISTO PARA ENTREGAR');
 INSERT INTO dbo.ESTADO (Descripcion) VALUES ('FINALIZADO');
+
+
+-- Tabla: TIPOITEM
+
+INSERT INTO dbo.TIPOITEM (NombreTipo) VALUES ('Procesador');
+INSERT INTO dbo.TIPOITEM (NombreTipo) VALUES ('Servicios');
+---Tabla: ITEMS
+-- Procesadores
+INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'Intel Core i9-13900K', 'Intel', 599.99, 50);
+INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'AMD Ryzen 9 7900X', 'AMD', 569.99, 30);
+INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'Intel Core i7-12700K', 'Intel', 399.99, 45);
+INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'AMD Ryzen 7 7700X', 'AMD', 349.99, 40);
+INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'Intel Core i5-13600K', 'Intel', 299.99, 60);
+-- Servicios
+INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (2, 'Reemplazo de Procesador', 'Técnico', 100.00, 999999);
+
 
 --Prueba Registro
 INSERT INTO dbo.REGISTRO (
@@ -48,24 +64,6 @@ VALUES (
     'Problema de arranque del sistema operativo' -- ProblemaReportado
 );
 
-/*
--- Tabla: TIPOITEM
-
-INSERT INTO dbo.TIPOITEM (NombreTipo) VALUES ('Procesador');
-INSERT INTO dbo.TIPOITEM (NombreTipo) VALUES ('Servicios');
----Tabla: ITEMS
--- Procesadores
-INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'Intel Core i9-13900K', 'Intel', 599.99, 50);
-INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'AMD Ryzen 9 7900X', 'AMD', 569.99, 30);
-INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'Intel Core i7-12700K', 'Intel', 399.99, 45);
-INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'AMD Ryzen 7 7700X', 'AMD', 349.99, 40);
-INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (1, 'Intel Core i5-13600K', 'Intel', 299.99, 60);
--- Servicios
-INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES (2, 'Reemplazo de Procesador', 'Técnico', 100.00, 999999);
-*/
-
-/*
-
 
 --TABLA USOITEMS
 
@@ -77,7 +75,7 @@ VALUES
 INSERT INTO dbo.PAGO(SERIERegistro,MontoPago) VALUES 
 ('R00001',100),
 ('R00001',726)
-*/
+
 SELECT * FROM USOITEMS
 SELECT sum(CostoTotal) SUMA from usoitems where serieregistro = 'R00001'
 UPDATE REGISTRO SET Importe = ? WHERE SERIERegistro = ?

@@ -125,19 +125,10 @@
 		{
 			"name": "TipoItem",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8080/items/visualizar-tipoItems",
+					"raw": "http://localhost:8080/items/TipoItems",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -145,7 +136,7 @@
 					"port": "8080",
 					"path": [
 						"items",
-						"visualizar-tipoItems"
+						"TipoItems"
 					]
 				}
 			},
@@ -154,19 +145,10 @@
 		{
 			"name": "Items",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:8080/items/vizualizar-items?idTipoItem=10",
+					"raw": "http://localhost:8080/items/TipoItems/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -174,13 +156,8 @@
 					"port": "8080",
 					"path": [
 						"items",
-						"vizualizar-items"
-					],
-					"query": [
-						{
-							"key": "idTipoItem",
-							"value": "10"
-						}
+						"TipoItems",
+						"3"
 					]
 				}
 			},
@@ -210,6 +187,122 @@
 					"path": [
 						"registro",
 						"crearRegistro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adelanto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serieRegistro\": \"R00002\",\r\n    \"montoPago\": 680.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pago/adelanto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pago",
+						"adelanto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAGO-FINAL",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serieRegistro\": \"R00002\",\r\n    \"montoPago\": 580.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pago/pago-final",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pago",
+						"pago-final"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"serieRegistro\": \"RUHP100002\",\r\n  \"fechaRealEntrega\": \"2024-12-17\",\r\n  \"problema2\": \"hola\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/actualizacion_registro/proceso_1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actualizacion_registro",
+						"proceso_1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"serieRegistro\": \"RUHP100002\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/actualizacion_registro/proceso_2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actualizacion_registro",
+						"proceso_2"
 					]
 				}
 			},

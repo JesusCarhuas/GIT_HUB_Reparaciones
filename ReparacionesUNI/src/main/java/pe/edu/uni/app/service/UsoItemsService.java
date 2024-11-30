@@ -43,19 +43,29 @@ public class UsoItemsService {
 	        validarSerieRegistro(bean.getSerieRegistro());
 	        bean.setCostoUnitario(obtenerCostoUnitario(bean.getIdItem()));
 	        validarCantidadDisponible(bean.getIdItem(), bean.getCantidad());
+	        validarEstado(bean);
 	    }
 	
 	
 	
-	@Transactional(readOnly = true)
-    public List<Map<String, Object>> obtenerTodosLosTiposDeItems() {
+
+    private void validarEstado(UsoItemsDto bean) {
+    	String sql = "select IDEstado from REGISTRO where SERIERegistro=?";
+        int estado = jdbcTemplate.queryForObject(sql, Integer.class, bean.getSerieRegistro());
+        if (estado != 1) {
+            throw new RuntimeException("El estado del registro esta inactivo. ");
+        }
+	}
+
+	public List<Map<String, Object>> obtenerTodosLosTiposDeItems() {
         String sql = "SELECT * FROM TIPOITEM";
         return jdbcTemplate.queryForList(sql);
     }
 
-    @Transactional(readOnly = true)
+
     public List<Map<String, Object>> obtenerItemsPorTipo(int idTipoItem) {
-        String sql = "SELECT * FROM Item WHERE idTipo = ?";
+        String sql = "SELECT IDItem,IDTipo,Nombre,Marca,CostoUnitario,Stock \r\n"
+        		+ "FROM ITEM WHERE IDTipo = ?";
         return jdbcTemplate.queryForList(sql, idTipoItem);
     }
 	

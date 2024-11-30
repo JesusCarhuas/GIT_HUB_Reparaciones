@@ -6,10 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.uni.app.dto.UsoItemsDto;
@@ -32,7 +33,7 @@ public class UsoItemsRest {
         }
     }
 	
-	@PostMapping("/visualizar-tipoItems")
+	@GetMapping("/TipoItems")
     public ResponseEntity<?> obtenerTodosLosTiposDeItems() {
         try {
             List<Map<String, Object>> tiposDeItems = usoItemsService.obtenerTodosLosTiposDeItems();
@@ -42,13 +43,19 @@ public class UsoItemsRest {
         }
     }
 	
-	@PostMapping("/vizualizar-items")
-    public ResponseEntity<?> obtenerItemsPorTipo(@RequestParam int idTipoItem) {
+	@GetMapping("/TipoItems/{idTipoItem}")
+    public ResponseEntity<?> obtenerItemsPorTipo(@PathVariable int idTipoItem) {
         try {
             List<Map<String, Object>> items = usoItemsService.obtenerItemsPorTipo(idTipoItem);
-            return new ResponseEntity<>(items, HttpStatus.OK);
+            
+            if (items != null && !items.isEmpty()) {
+                return new ResponseEntity<>(items, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("No se encontraron items para el tipo especificado.", HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error en el servidor: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
+
