@@ -1,6 +1,11 @@
 package pe.edu.uni.app.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,6 +33,24 @@ public class ClienteService {
 
         return bean;
     }
+	
+	public List<Map<String, Object>> obtenerTodosLosClientes() {
+        String sql = "SELECT IDCliente,Nombre,ApellidoPaternoC,ApellidoMaternoC,ClienteDni FROM CLIENTE";
+        return jdbcTemplate.queryForList(sql);
+    }
+	
+	public ClienteDto validar(String dni) {
+		String sql = """
+				select ClienteDni from cliente where ClienteDni = ?
+			""";
+		ClienteDto bean;
+		try {
+			bean = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(ClienteDto.class),dni);
+		} catch (EmptyResultDataAccessException e) {
+			bean = null;
+		}
+		return bean;
+	}
 	
 	
 	private void validarDatosCliente(ClienteDto bean) {

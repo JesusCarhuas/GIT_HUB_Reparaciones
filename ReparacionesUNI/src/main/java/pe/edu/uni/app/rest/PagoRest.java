@@ -12,6 +12,7 @@ import pe.edu.uni.app.service.PagoService;
 
 @RestController
 @RequestMapping("/pago")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PagoRest {
 
     @Autowired

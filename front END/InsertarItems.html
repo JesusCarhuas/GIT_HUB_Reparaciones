@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Items</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Insertar Items</h2>
+
+        <!-- Formulario para insertar items -->
+        <form id="formInsertarItems">
+            <div class="form-group">
+                <label for="idItem">ID Item:</label>
+                <input type="number" id="idItem" class="form-control" placeholder="Ingrese el ID del item" required>
+            </div>
+            <div class="form-group">
+                <label for="serieRegistro">Serie de Registro:</label>
+                <input type="text" id="serieRegistro" class="form-control" placeholder="Ingrese la serie de registro" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" class="form-control" placeholder="Ingrese la cantidad" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Insertar Item</button>
+        </form>
+
+        <!-- Botones adicionales -->
+        <div class="mt-4 text-center">
+            <button id="btnMostrarTipoItems" class="btn btn-secondary mx-2">Mostrar Tipo de Items</button>
+            <button id="btnItems" class="btn btn-info mx-2">Items</button>
+        </div>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/insertarItems.js"></script>
+</body>
+</html>
+

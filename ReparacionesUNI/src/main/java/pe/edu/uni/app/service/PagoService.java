@@ -29,13 +29,13 @@ public class PagoService {
     }
 
     private void validarEstado(PagoDto pago) {
-    	String sql = "select IDEstado from REGISTRO where SERIERegistro=?";
+        String sql = "SELECT IDEstado FROM REGISTRO WHERE SERIERegistro = ?";
         int estado = jdbcTemplate.queryForObject(sql, Integer.class, pago.getSerieRegistro());
 
-        if (!(estado == 1 && estado == 2)) {
+        if (estado != 1 && estado != 2) {
             throw new RuntimeException("El estado no se encuentra en el proceso (1-EN PROCESO) o (2-REPARADO), para proceder.");
         }
-	}
+    }
 
 	private void validarUnicoAdelanto(PagoDto pago) {
 		String sql = "select count(IDPago) contador from pago where SERIERegistro = ? AND tipo = 'ADELANTO'";
@@ -64,15 +64,10 @@ public class PagoService {
         validarExistenciaTotal(pago);
         validarUnicoPagoFinal(pago);
         validarPagoFinal(pago);
-        
 
         // Insertar el pago final en la tabla PAGO_TEST
         String sqlInsert = "INSERT INTO PAGO (SERIERegistro, MontoPago,Tipo) VALUES (?, ?,'TOTAL')";
         jdbcTemplate.update(sqlInsert, pago.getSerieRegistro(), pago.getMontoPago());
-
-        // Actualizar el campo Adelanto en la tabla REGISTRO al total
-        String sqlUpdate = "UPDATE REGISTRO SET Adelanto = TOTAL WHERE SERIERegistro = ?";
-        jdbcTemplate.update(sqlUpdate, pago.getSerieRegistro());
 
         return pago;
     }
@@ -102,7 +97,7 @@ public class PagoService {
         Double saldo = jdbcTemplate.queryForObject(sql, Double.class, pago.getSerieRegistro());
         
         if (!saldo.equals(pago.getMontoPago())) {
-            throw new RuntimeException("Su deuda restante es" + saldo);
+            throw new RuntimeException("Su deuda restante es: " + saldo);
         }
 	}
 
@@ -117,12 +112,15 @@ public class PagoService {
             throw new RuntimeException("La serie de registro es obligatoria.");
         }
 
+        // Verificar existencia en REGISTRO
         String sql = "SELECT COUNT(1) FROM REGISTRO WHERE SERIERegistro = ?";
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, serieRegistro);
         if (count == null || count == 0) {
             throw new RuntimeException("La serie de registro no existe.");
         }
-        String sqlIngresos = "SELECT COUNT(1) FROM USOITEMS WHERE SERIERegistro = ?";
+
+        // Verificar si ya tiene el máximo permitido en PAGO
+        String sqlIngresos = "SELECT COUNT(1) FROM PAGO WHERE SERIERegistro = ? AND Tipo = 'ADELANTO'";
         Integer countIngresos = jdbcTemplate.queryForObject(sqlIngresos, Integer.class, serieRegistro);
         if (countIngresos != null && countIngresos >= 2) {
             throw new RuntimeException("La serie de registro ya tiene el límite máximo de dos ingresos.");

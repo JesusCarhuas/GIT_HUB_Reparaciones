@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import pe.edu.uni.app.dto.UsoItemsDto;
 import pe.edu.uni.app.service.UsoItemsService;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/items")
 public class UsoItemsRest {
 	
@@ -34,14 +36,15 @@ public class UsoItemsRest {
     }
 	
 	@GetMapping("/TipoItems")
-    public ResponseEntity<?> obtenerTodosLosTiposDeItems() {
-        try {
-            List<Map<String, Object>> tiposDeItems = usoItemsService.obtenerTodosLosTiposDeItems();
-            return new ResponseEntity<>(tiposDeItems, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+	public ResponseEntity<?> obtenerTodosLosTiposDeItems() {
+	    try {
+	        List<Map<String, Object>> tiposDeItems = usoItemsService.obtenerTodosLosTiposDeItems();
+	        return new ResponseEntity<>(tiposDeItems, HttpStatus.OK);
+	    } catch (Exception e) {
+	        return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+	    }
+	}
+
 	
 	@GetMapping("/TipoItems/{idTipoItem}")
     public ResponseEntity<?> obtenerItemsPorTipo(@PathVariable int idTipoItem) {

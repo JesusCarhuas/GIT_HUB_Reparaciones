@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Registro</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Crear Registro</h2>
+        
+        <!-- Formulario para crear registro -->
+        <form id="formCrearRegistro">
+            <div class="form-group">
+                <label for="idComputadora">ID Computadora:</label>
+                <input type="number" id="idComputadora" class="form-control" placeholder="Ingrese el ID de la computadora" required>
+            </div>
+            <div class="form-group">
+                <label for="idTecnico">ID Técnico:</label>
+                <input type="number" id="idTecnico" class="form-control" placeholder="Ingrese el ID del técnico" required>
+            </div>
+            <div class="form-group">
+                <label for="adelanto">Adelanto:</label>
+                <input type="number" step="0.01" id="adelanto" class="form-control" placeholder="Ingrese el monto de adelanto" required>
+            </div>
+            <div class="form-group">
+                <label for="duracionEstimada">Duración Estimada (días):</label>
+                <input type="number" id="duracionEstimada" class="form-control" placeholder="Ingrese la duración estimada" required>
+            </div>
+            <div class="form-group">
+                <label for="problemaReportado">Problema Reportado:</label>
+                <textarea id="problemaReportado" class="form-control" placeholder="Describa el problema (opcional)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Registro</button>
+        </form>
+
+        <!-- Botones para Visualizar Computadoras y Técnicos -->
+        <div class="mt-4">
+            <button id="btnVisualizarComputadoras" class="btn btn-secondary">Computadoras</button>
+            <button id="btnVisualizarTecnicos" class="btn btn-secondary">Técnicos</button>
+        </div>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/crearRegistro.js"></script>
+</body>
+</html>

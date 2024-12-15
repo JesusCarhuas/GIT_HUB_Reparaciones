@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertar Especificaciones</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Insertar Especificaciones</h2>
+        
+        <!-- Formulario para insertar especificaciones -->
+        <form id="formInsertarEspecificaciones">
+            <div class="form-group">
+                <label for="serieRegistro">Serie del Registro:</label>
+                <input type="text" id="serieRegistro" class="form-control" placeholder="Ingrese la serie del registro" required>
+            </div>
+            <div class="form-group">
+                <label for="fechaRealEntrega">Fecha Real de Entrega (YYYY-MM-DD):</label>
+                <input type="date" id="fechaRealEntrega" class="form-control" placeholder="Ingrese la fecha real de entrega" required>
+            </div>
+            <div class="form-group">
+                <label for="problema2">Problema Adicional Reportado:</label>
+                <textarea id="problema2" class="form-control" placeholder="Describa el problema adicional"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Insertar Especificaciones</button>
+        </form>
+
+        <!-- Botón para concluir proceso -->
+        <div class="mt-4 text-center">
+            <button id="btnConcluirProceso" class="btn btn-success">Concluir Proceso</button>
+        </div>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/actualizarRegistro.js"></script>
+</body>
+</html>

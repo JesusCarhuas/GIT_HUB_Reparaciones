@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reparación de Computadoras</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #5c247a; /* Color morado formal */
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(60, 60, 120, 0.9), rgba(60, 60, 120, 0.7)), url('UNI_LOGO.jpg') no-repeat center top;
+            color: white;
+            text-align: center;
+            padding: 70px 0;
+        }
+        .hero-section img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+        }
+        .services-section {
+            padding: 30px 0;
+        }
+        .btn-custom {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .footer {
+            background-color: #3e185e;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .quienes-somos {
+            padding: 30px 0;
+            background-color: #6e3a8f;
+            border-top: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+        }
+        .quienes-somos h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700; /* Dorado */
+        }
+        .quienes-somos p {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <img src="UNI_LOGO.jpg" alt="Logo UNI">
+        <h1>Sistema de Reparación de Computadoras</h1>
+        <p>La solución integral para la gestión de reparaciones y atención técnica.</p>
+        <button class="btn btn-light btn-lg mt-3">Más Información</button>
+    </div>
+
+    <!-- Services Section -->
+    <div class="container services-section">
+        <h2 class="text-center mb-4">¿Qué Desea Hacer?</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <button id="btnCliente" class="btn btn-primary btn-custom w-100">Soy Cliente</button>
+            </div>
+            <div class="col-md-4">
+                <button id="btnTecnico" class="btn btn-secondary btn-custom w-100">Soy Técnico</button>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-success btn-custom w-100">Contactar Soporte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quienes Somos Section -->
+    <div class="container quienes-somos">
+        <h3 class="text-center">¿Quiénes Somos?</h3>
+        <p class="text-center">
+            Somos estudiantes de la Universidad Nacional de Ingeniería (UNI), apasionados por el desarrollo tecnológico y la innovación.
+            Este proyecto tiene como objetivo proporcionar una solución completa para la gestión de reparaciones de computadoras,
+            optimizando el trabajo técnico y mejorando la experiencia del cliente.
+        </p>
+    </div>
+
+    <!-- Additional Section -->
+    <div class="container my-5">
+        <h3 class="text-center">Nuestras Funcionalidades</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de Clientes</h5>
+                        <p class="card-text">Administre los datos y servicios de sus clientes de manera eficiente.</p>
+                        <button class="btn btn-primary btn-custom w-100">Ver Más</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mantenimiento de Equipos</h5>
+                        <p class="card-text">Seguimiento detallado de las reparaciones y mantenimientos.</p>
+                        <button class="btn btn-primary btn-custom w-100">Ver Más</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reportes Personalizados</h5>
+                        <p class="card-text">Genere informes detallados para optimizar su servicio.</p>
+                        <button class="btn btn-primary btn-custom w-100">Ver Más</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 Sistema de Reparación de Computadoras. Todos los derechos reservados.</p>
+    </div>
+
+    <script>
+        // Redirección al Login de Cliente
+        document.getElementById('btnCliente').addEventListener('click', () => {
+            window.location.href = 'LoginCliente.html';
+        });
+
+        // Redirección al Login de Técnico
+        document.getElementById('btnTecnico').addEventListener('click', () => {
+            window.location.href = 'LoginTecnico.html';
+        });
+    </script>
+</body>
+</html>
+
+
+

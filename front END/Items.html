@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Items</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Consultar Items por Tipo</h2>
+        
+        <!-- Formulario para ingresar IDTipo -->
+        <form class="mb-4">
+            <div class="form-group">
+                <label for="idTipo">ID Tipo:</label>
+                <input type="number" id="idTipo" class="form-control" placeholder="Ingrese el ID del tipo" required>
+            </div>
+            <button type="button" id="btnConsultar" class="btn btn-primary">Consultar Items</button>
+        </form>
+        
+        <!-- Tabla para mostrar los items -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Item</th>
+                    <th>ID Tipo</th>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Costo Unitario</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody id="tablaItems">
+                <!-- Filas dinámicas generadas con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/items.js"></script>
+</body>
+</html>

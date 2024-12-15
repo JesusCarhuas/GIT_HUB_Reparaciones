@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Computadoras</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Lista de Computadoras</h2>
+
+        <!-- Tabla para mostrar las computadoras -->
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>ID Computadora</th>
+                    <th>ID Cliente</th>
+                    <th>Marca</th>
+                    <th>Número de Serie</th>
+                </tr>
+            </thead>
+            <tbody id="tablaComputadoras">
+                <!-- Filas dinámicas generadas con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/visualizarComputadora.js"></script>
+</body>
+</html>
+
+

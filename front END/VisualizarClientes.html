@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Clientes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Lista de Clientes</h2>
+
+        <!-- Tabla para mostrar los clientes -->
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>ID Cliente</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>DNI</th>
+                </tr>
+            </thead>
+            <tbody id="tablaClientes">
+                <!-- Filas dinámicas generadas con JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/visualizarClientes.js"></script>
+</body>
+</html>

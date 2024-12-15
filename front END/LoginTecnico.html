@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Técnico</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            color: #343a40;
+        }
+        .login-container h2 {
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .login-container p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #673ab7;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #9575cd;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            text-align: center;
+        }
+        footer {
+            background-color: #311b92;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Container -->
+    <div class="login-container">
+        <h2>Inicio de Sesión - Técnico</h2>
+        
+        <!-- Formulario de Login -->
+        <form id="formLoginTecnico">
+            <div class="form-group">
+                <label for="tecnicoDni">DNI del Técnico:</label>
+                <input type="text" 
+                       id="tecnicoDni" 
+                       class="form-control" 
+                       placeholder="Ingrese su DNI (8 dígitos)" 
+                       maxlength="8" 
+                       required 
+                       pattern="\d{8}" 
+                       title="Ingrese un DNI válido de 8 dígitos">
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" 
+                       id="password" 
+                       class="form-control" 
+                       placeholder="Ingrese su contraseña" 
+                       required>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Iniciar Sesión</button>
+        </form>
+
+        <!-- Mensaje de error opcional -->
+        <div id="errorMensaje" class="alert alert-danger mt-3 d-none" role="alert">
+            Credenciales incorrectas. Por favor, intente nuevamente.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sistema de Reparación de Computadoras. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/loginTecnico.js"></script>
+</body>
+</html>

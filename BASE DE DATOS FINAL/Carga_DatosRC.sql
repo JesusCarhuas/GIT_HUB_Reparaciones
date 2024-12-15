@@ -246,19 +246,21 @@ INSERT INTO dbo.ITEM (IDTipo, Nombre, Marca, CostoUnitario, Stock) VALUES
 (16, 'Configuración de Correo Electrónico', 'Técnico', 30.00, 999999),
 (16, 'Instalación de Drivers', 'Técnico', 20.00, 999999);
 
-
-
+select * from USOITEMS
+select * from COMPUTADORA
+select * from CLIENTE
+SELECT * FROM ESTADO
+SELECT * FROM REGISTRO
 --seleccion
-
+/*
 SELECT * FROM TECNICO
 SELECT * FROM TIPOITEM
 SELECT * FROM ITEM
 SELECT * FROM ESTADO
 select * from REGISTRO
-select * from COMPUTADORA
-select * from CLIENTE
-select * from USOITEMS
-SELECT COUNT(1) FROM USOITEMS WHERE SERIERegistro = ?
+*/
+
+/*SELECT COUNT(1) FROM USOITEMS WHERE SERIERegistro = ?
 SELECT COUNT(1) FROM REGISTRO WHERE SERIERegistro = 'RUHP100002'
 select * from REGISTRO
 
@@ -286,4 +288,4 @@ select CONVERT(VARCHAR, FechaDeRegistro, 23) FROM REGISTRO where SERIERegistro =
 DELETE FROM CLIENTE
 WHERE  ClienteDni = '12342679'
 GO
-select COUNT(1) contador from CLIENTE*/
+select COUNT(1) contador from CLIENTE*/				*/

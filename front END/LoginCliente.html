@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Cliente</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            color: #343a40;
+        }
+        .login-container h2 {
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .login-container p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .btn-custom {
+            background-color: #673ab7;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #9575cd;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+        #errorMessage {
+            display: none;
+            font-size: 1rem;
+            border: 1px solid red;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        footer {
+            background-color: #311b92;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Container -->
+    <div class="login-container">
+        <h2 class="text-center">Inicio de Sesión - Cliente</h2>
+        <p class="text-center">Ingrese su DNI para acceder al menú del cliente</p>
+
+        <!-- Formulario de inicio de sesión -->
+        <form id="formLoginCliente">
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input 
+                    type="text" 
+                    id="dni" 
+                    class="form-control" 
+                    placeholder="Ingrese su DNI (8 dígitos)" 
+                    required 
+                    maxlength="8" 
+                    pattern="\d{8}"
+                    title="Ingrese un DNI válido de 8 dígitos">
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Iniciar Sesión</button>
+        </form>
+
+        <!-- Mensaje de error -->
+        <div id="errorMessage" class="text-center mt-3">
+            Error al iniciar sesión. Por favor, verifique sus datos.
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sistema de Reparación de Computadoras. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Archivos JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/LoginCliente.js"></script>
+</body>
+</html>
+
+

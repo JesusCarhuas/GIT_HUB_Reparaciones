@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú del Cliente</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            padding-top: 50px;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        .btn-custom {
+            font-size: 1.5rem;
+            padding: 10px 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            background-color: #673ab7;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #9575cd;
+        }
+        .btn-secondary {
+            background-color: #5e35b1;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #7e57c2;
+        }
+        footer {
+            background-color: #311b92;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Bienvenido al Menú del Cliente</h1>
+        <p>Selecciona una de las opciones para continuar:</p>
+        
+        <!-- Botones de Opciones -->
+        <div class="mt-4">
+            <button id="btnPago" class="btn btn-primary btn-custom mx-3">Visualizar Pagos</button>
+            <button id="btnRegistro" class="btn btn-secondary btn-custom mx-3">Estado de Registro</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sistema de Reparación de Computadoras. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Redireccionar a pagos.html cuando se haga clic en el botón PAGO
+        document.getElementById('btnPago').addEventListener('click', () => {
+            window.location.href = 'pagos.html'; // Cambiar esta ruta si pagos.html está en otra carpeta
+        });
+
+        // Redireccionar a proceso.html cuando se haga clic en REGISTRO
+        document.getElementById('btnRegistro').addEventListener('click', () => {
+            window.location.href = 'Estado.html'; // Cambiar esta ruta si proceso.html está en otra carpeta
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de Proceso</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Fondo y fuente general */
+        body {
+            background: linear-gradient(135deg, #6c63ff, #3c3b6e);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Contenedor principal */
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            color: #343a40;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Títulos */
+        h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #6c63ff;
+            font-weight: bold;
+        }
+
+        /* Botones */
+        .btn-primary, .btn-secondary {
+            border: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+        }
+
+        .btn-primary:hover {
+            background-color: #524db8;
+        }
+
+        .btn-secondary {
+            background-color: #3c3b6e;
+        }
+
+        .btn-secondary:hover {
+            background-color: #282659;
+        }
+
+        /* Inputs */
+        input.form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        /* Tabla */
+        .table-container {
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            background-color: #6c63ff;
+            color: #ffffff;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f7f7f7;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tbody tr:hover {
+            background-color: #f0eaff;
+        }
+
+        /* Footer (Opcional) */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Estado de Proceso</h2>
+
+        <!-- Formulario para buscar por serie -->
+        <form id="formSerie" class="mb-4">
+            <div class="form-group">
+                <label for="serie">Ingrese Serie:</label>
+                <input 
+                    type="text" 
+                    id="serie" 
+                    class="form-control" 
+                    placeholder="Ingrese la serie del proceso" 
+                    required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Buscar por Serie</button>
+        </form>
+
+        <!-- Formulario para buscar por DNI -->
+        <form id="formDni" class="mb-4">
+            <div class="form-group">
+                <label for="dni">Ingrese DNI del Cliente:</label>
+                <input 
+                    type="text" 
+                    id="dni" 
+                    class="form-control" 
+                    placeholder="Ingrese el DNI del cliente" 
+                    required 
+                    maxlength="8" 
+                    pattern="\d{8}">
+            </div>
+            <button type="submit" class="btn btn-secondary btn-block">Buscar por DNI</button>
+        </form>
+
+        <!-- Tabla para mostrar los procesos -->
+        <div class="table-container">
+            <h3>Detalles del Proceso</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SERIE</th>
+                        <th>ID Computadora</th>
+                        <th>ID Técnico</th>
+                        <th>Descripción</th>
+                        <th>Adelanto</th>
+                        <th>Total</th>
+                        <th>Fecha Estimada de Entrega</th>
+                        <th>Fecha Real de Entrega</th>
+                        <th>Problema Reportado</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaProceso">
+                    <!-- Filas generadas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Sistema de Gestión de Procesos. Todos los derechos reservados.
+    </footer>
+
+    <!-- Archivo JavaScript -->
+    <script src="js/Estado.js"></script>
+</body>
+</html>

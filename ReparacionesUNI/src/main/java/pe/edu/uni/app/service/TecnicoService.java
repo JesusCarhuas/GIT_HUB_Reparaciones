@@ -1,5 +1,8 @@
 package pe.edu.uni.app.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,19 @@ public class TecnicoService {
                             bean.getDireccion(), bean.getTelefono(), bean.getEmail(), bean.getContrasena());
 
         return bean;
+    }
+	
+	public List<Map<String, Object>> obtenerTodosLosTecnicos() {
+        String sql = "SELECT \r\n"
+        		+ "    IDTecnico,\r\n"
+        		+ "    CONCAT(Nombre, ' ', ApellidoPaternoT, ' ', ApellidoMaternoT) AS Nombre,\r\n"
+        		+ "    CASE \r\n"
+        		+ "        WHEN Activo = 0 THEN 'Libre'\r\n"
+        		+ "        WHEN Activo = 1 THEN 'Ocupado'\r\n"
+        		+ "        ELSE 'Desconocido' -- Opcional, para manejar otros casos\r\n"
+        		+ "    END AS Estado\r\n"
+        		+ "FROM TECNICO;";
+        return jdbcTemplate.queryForList(sql);
     }
 	
 	private void validarDatosTecnico(TecnicoDto bean) {

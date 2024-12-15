@@ -1,5 +1,8 @@
 package pe.edu.uni.app.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -83,5 +86,10 @@ public class ComputadoraService {
         if (anioFabricacion < 1980 || anioFabricacion > anioActual) {
             throw new RuntimeException("El año de fabricación debe ser un valor entre 1980 y el año actual.");
         }
+    }
+    
+    public List<Map<String, Object>> obtenerTodosLasComputadoras() {
+        String sql = "select IDComputadora,IDCliente,Marca,NumeroSerie from COMPUTADORA";
+        return jdbcTemplate.queryForList(sql);
     }
 }

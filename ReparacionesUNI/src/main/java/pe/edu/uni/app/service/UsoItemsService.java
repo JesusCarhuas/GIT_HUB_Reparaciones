@@ -58,7 +58,7 @@ public class UsoItemsService {
 	}
 
 	public List<Map<String, Object>> obtenerTodosLosTiposDeItems() {
-        String sql = "SELECT * FROM TIPOITEM";
+        String sql = "select IDTipo,NombreTipo from TIPOITEM";
         return jdbcTemplate.queryForList(sql);
     }
 

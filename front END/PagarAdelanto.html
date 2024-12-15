@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar Adelanto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Registrar Adelanto</h2>
+        
+        <!-- Formulario para registrar adelanto -->
+        <form id="formPagarAdelanto">
+            <div class="form-group">
+                <label for="serieRegistro">Serie del Registro:</label>
+                <input type="text" id="serieRegistro" class="form-control" placeholder="Ingrese la serie del registro" required>
+            </div>
+            <div class="form-group">
+                <label for="montoPago">Monto del Adelanto:</label>
+                <input type="number" id="montoPago" class="form-control" placeholder="Ingrese el monto del adelanto" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Adelanto</button>
+        </form>
+    </div>
+
+    <!-- Archivo JavaScript externo -->
+    <script src="js/pagarAdelanto.js"></script>
+</body>
+</html>
